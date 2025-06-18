@@ -3,11 +3,16 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Main extends JPanel implements ActionListener {
-    private int x = 100;
-    private int y = 100;
-    private int dx = 7, dy = 7;
-    final int radius = 20;
-    Timer timer;
+    private Particle blue;
+    private Particle red;
+    private Timer timer;
+
+    public Main() {
+        blue = new Particle(100, 100, 7, 7, 20, Color.BLUE);
+        red = new Particle(100, 38, 7, -7, 20, Color.RED);
+        timer = new Timer(10, this);
+        timer.start();
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Demo");
@@ -18,26 +23,39 @@ public class Main extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
-    public Main() {
-        timer = new Timer(10, this);
-        timer.start();
-    }
-
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
-        g.setColor(Color.BLUE);
-        g.fillOval(x, y, radius, radius);
+        blue.draw(g);
+        red.draw(g);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
-        x += dx;
-        y += dy;
-
-        if (x < 0 || x + radius > getWidth()) dx = -dx;
-        if (y < 0 || y + radius > getHeight()) dy = -dy;
-
+        blue.move(getWidth(), getHeight());
+        red.move(getWidth(), getHeight());
         repaint();
     }
 }
+
+
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        g.setColor(Color.WHITE);
+//        g.fillRect(0, 0, getWidth(), getHeight());
+//        g.setColor(Color.BLUE);
+//        g.fillOval(x, y, radius, radius);
+//    }
+//
+//    public void actionPerformed(ActionEvent e) {
+//        x += dx;
+//        y += dy;
+//
+//        if (x < 0 || x + radius > getWidth()) dx = -dx;
+//        if (y < 0 || y + radius > getHeight()) dy = -dy;
+//
+//        repaint();
+//    }
+
