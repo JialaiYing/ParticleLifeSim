@@ -8,15 +8,17 @@ public class Particle {
     private int dx, dy;
     private final int radius;
     private final Color color;
+    private double force;
     Timer timer;
 
-    public Particle(int x, int y, int dx, int dy, int radius, Color color) {
+    public Particle(int x, int y, int dx, int dy, int radius, Color color, double force) {
         this.x = x;
         this.y = y;
         this.dx = dx;
         this.dy = dy;
         this.radius = radius;
         this.color = color;
+        this.force = Math.random();
     }
 
     public void move(int width, int height) {
@@ -34,5 +36,9 @@ public class Particle {
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillOval(x, y, radius, radius);
+    }
+
+    public void force(Particle x, Particle y) {
+
     }
 }

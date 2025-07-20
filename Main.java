@@ -8,8 +8,8 @@ public class Main extends JPanel implements ActionListener {
     private Timer timer;
 
     public Main() {
-        blue = new Particle(100, 100, 7, 7, 20, Color.BLUE);
-        red = new Particle(100, 38, 7, -7, 20, Color.RED);
+        blue = new Particle(100, 100, 7, 7, 20, Color.BLUE, 0);
+        red = new Particle(100, 38, 18, -7, 20, Color.RED, 0);
         timer = new Timer(10, this);
         timer.start();
     }
@@ -21,6 +21,17 @@ public class Main extends JPanel implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         frame.setVisible(true);
+    }
+
+    public void colorMatrix(){
+        int[][] colors = new int[2][2];
+        for(int x = 0; x < colors.length; x++)
+        {
+            for(int y = 0; y < colors[0].length; y++)
+            {
+                colors[x][y] = 0;
+            }
+        }
     }
 
     @Override
